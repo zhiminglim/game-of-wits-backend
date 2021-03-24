@@ -53,6 +53,14 @@ app.get("/", (req, res) => {
   res.send({ response: "I am alive" }).status(200);
 });
 
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, "build", "index.html"), (err) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
+});
+
 server.listen(port, function () {
   console.log(`Server started on port ${port}.`);
 })
